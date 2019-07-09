@@ -14,7 +14,8 @@ class AddNew(unittest.TestCase):
         wd = self.wd
         self.open_homepage(wd)
         self.login(wd, username="admin", password="secret")
-        self.add_new_contact(wd, Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Rog", company="OOO", address="Moscow", mobile="+79260001111", email="123@mail.ru"))
+        self.add_new_contact(wd, Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Rog",
+                                         company="OOO", address="Moscow", mobile="+79260001111", email="123@mail.ru", bday="1"))
         self.logout(wd)
 
     def logout(self, wd):
@@ -47,7 +48,7 @@ class AddNew(unittest.TestCase):
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text("1")
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
         wd.find_element_by_name("bday").click()
         wd.find_element_by_name("bmonth").click()
         Select(wd.find_element_by_name("bmonth")).select_by_visible_text("January")

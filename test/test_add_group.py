@@ -10,15 +10,14 @@ def app(request):
     request.addfinalizer(fixture.destroy)
     return fixture
 
-
 def test_add_group(app):
     app.session.login(username="admin", password="secret")
-    app.create_group(Group(name="group_name", header="header", footer="footer"))
+    app.group.create_group(Group(name="group_name", header="header", footer="footer"))
     app.session.logout()
 
 
 def test_add_emty_group(app):
     app.session.login(username="admin", password="secret")
-    app.create_group(Group(name="", header="", footer=""))
+    app.group.create_group(Group(name="", header="", footer=""))
     app.session.logout()
 

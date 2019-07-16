@@ -16,6 +16,17 @@ class contactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
 
+    def details_modify(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//img[@alt='Details']").click()
+        wd.find_element_by_xpath("//input[@name='modifiy']").click()
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_to_contact()
+
+    def return_to_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home page").click()
+
     def add_new_contact(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()

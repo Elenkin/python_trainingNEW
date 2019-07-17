@@ -40,10 +40,16 @@ class groupHelper:
         #submit deletion
         wd.find_element_by_name("delete").click()
 
-    def edit(self):
+    def edit(self, group):
         wd = self.app.wd
         self.open_group_page()
         wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name("edit").click()
+        self.fill_group_form(group)
+        wd.find_element_by_name("update").click()
+        self.return_to_group_page()
+
+
 
 
 

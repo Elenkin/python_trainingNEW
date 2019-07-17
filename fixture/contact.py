@@ -16,6 +16,11 @@ class contactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
 
+    def del_from_edit_form(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+
     def details_modify(self, contact):
         wd = self.app.wd
         wd.find_element_by_xpath("//img[@alt='Details']").click()

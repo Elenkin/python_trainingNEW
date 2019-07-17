@@ -24,6 +24,13 @@ class contactHelper:
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_contact()
 
+    def edit(self, contact):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.fill_form_contact(contact)
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_to_contact()
+
     def return_to_contact(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home page").click()

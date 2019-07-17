@@ -20,6 +20,7 @@ class contactHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//img[@alt='Details']").click()
         wd.find_element_by_xpath("//input[@name='modifiy']").click()
+
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_contact()
 
@@ -30,6 +31,12 @@ class contactHelper:
     def add_new_contact(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
+        self.fill_form_contact(contact)
+        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        wd.find_element_by_link_text("home page").click()
+
+    def fill_form_contact(self, contact):
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -62,5 +69,3 @@ class contactHelper:
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact.byear)
-        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        wd.find_element_by_link_text("home page").click()

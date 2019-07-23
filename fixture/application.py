@@ -8,7 +8,7 @@ class Application:
 
     def __init__(self):
         self.wd = webdriver.Chrome('C:\\Users\\e.pavlova\\Desktop\\tmp\\chromedriver_win32\\chromedriver.exe')
-        self.wd.implicitly_wait(60)
+        self.wd.implicitly_wait(5)
         self.session = sessionHelper(self)
         self.group = groupHelper(self)
         self.contact = contactHelper(self)

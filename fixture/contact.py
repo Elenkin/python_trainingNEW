@@ -88,3 +88,7 @@ class contactHelper:
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact.byear)
+
+    def count_contact(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_name("selected[]"))

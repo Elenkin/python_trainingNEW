@@ -64,6 +64,13 @@ class groupHelper:
         # select first group
         wd.find_element_by_name("selected[]").click()
 
+    def count_group(self):
+        wd = self.app.wd
+        self.open_group_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
+
+
 
 
 

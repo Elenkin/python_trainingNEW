@@ -52,7 +52,7 @@ class contactHelper:
         wd.find_element_by_link_text("add new").click()
         self.fill_form_contact(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        wd.find_element_by_link_text("home page").click()
+        self.return_to_contact()
 
     def fill_form_contact(self, contact):
         wd = self.app.wd

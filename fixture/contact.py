@@ -91,5 +91,11 @@ class contactHelper:
 
     def count_contact(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.open_contact_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def open_contact_page(self):
+        wd = self.app.wd
+        if (wd.current_url.endswith("/addressbook/") and wd.find_element_by_link_text("Number of results: ")):
+            return
+        wd.find_element_by_link_text("home").click()

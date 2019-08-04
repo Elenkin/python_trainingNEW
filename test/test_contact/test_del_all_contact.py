@@ -7,5 +7,7 @@ def test_del_all_contact(app):
                                             company="OOO", address="Moscow", mobile="+79260001111", email="123@mail.ru",
                                             bday="1", bmonth="January", byear="1990"))
     app.contact.del_all_contact()
+    new_contacts = app.contact.get_contact_list()
+    assert len(new_contacts) == 0
 
 

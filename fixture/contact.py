@@ -13,6 +13,17 @@ class contactHelper:
         wd.switch_to_alert().accept()
         self.contact_cache = None
 
+    def del_contact_by_index(self, index):
+        wd = self.app.wd
+        self.select_contact_by_index(index)
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+        self.contact_cache = None
+
+    def select_contact_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
     def del_all_contact(self):
         wd = self.app.wd
         wd.find_element_by_id("MassCB").click()
@@ -41,6 +52,19 @@ class contactHelper:
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_contact()
         self.contact_cache = None
+
+    def details_modify_by_index(self, index, contact):
+        wd = self.app.wd
+        self.select_contact_by_modify(index)
+        wd.find_element_by_xpath("//input[@name='modifiy']").click()
+        self.fill_form_contact(contact)
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_to_contact()
+        self.contact_cache = None
+
+    def select_contact_by_modify(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_xpath("//img[@alt='Details']")[index].click()
 
     def edit(self, contact):
         wd = self.app.wd

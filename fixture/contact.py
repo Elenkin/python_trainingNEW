@@ -150,11 +150,10 @@ class contactHelper:
                 lastname = element.find_elements_by_tag_name("td")[1].text
                 firstname = element.find_elements_by_tag_name("td")[2].text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                all_phones = element.find_elements_by_tag_name("td")[5].text.splitlines()
+                all_phones = element.find_elements_by_tag_name("td")[5].text
                 address = element.find_elements_by_tag_name("td")[3].text
                 email = element.find_elements_by_tag_name("td")[4].text
-                self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id,
-                                                  home=all_phones[0], mobile=all_phones[1], work=all_phones[2],
+                self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id, all_phones_from_home_page=all_phones,
                                                   address=address, email=email))
         return list(self.contact_cache)
 

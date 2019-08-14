@@ -118,6 +118,10 @@ class contactHelper:
         wd.find_element_by_name("work").send_keys(contact.work)
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(contact.email)
+        wd.find_element_by_name("email2").clear()
+        wd.find_element_by_name("email2").send_keys(contact.email2)
+        wd.find_element_by_name("email3").clear()
+        wd.find_element_by_name("email3").send_keys(contact.email3)
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
         wd.find_element_by_name("bday").click()
@@ -152,9 +156,9 @@ class contactHelper:
                 id = element.find_element_by_name("selected[]").get_attribute("value")
                 all_phones = element.find_elements_by_tag_name("td")[5].text
                 address = element.find_elements_by_tag_name("td")[3].text
-                email = element.find_elements_by_tag_name("td")[4].text
+                all_email = element.find_elements_by_tag_name("td")[4].text
                 self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id, all_phones_from_home_page=all_phones,
-                                                  address=address, email=email))
+                                                  address=address, all_email_from_home_page=all_email))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):

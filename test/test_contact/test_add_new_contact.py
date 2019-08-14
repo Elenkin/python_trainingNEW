@@ -5,7 +5,7 @@ from model.contact import Contact
 def test_add_new(app):
     old_contacts = app.contact.get_contact_list()
     #локальная переменная которая создает Контакт
-    contact = Contact(firstname="name", middlename="ДДДДДД", lastname="ДДДДДД", nickname="Rog",
+    contact = Contact(firstname="YYYYYYY", middlename="ДДДДДД", lastname="YYYYYY", nickname="Rog",
                       company="OOO", address="Moscow",
                       home="+84951112233", mobile="7926 0001111", work="3(333)33333",
                       email="123@mail.ru", bday="1", bmonth="January", byear="1990")

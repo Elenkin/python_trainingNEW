@@ -151,9 +151,11 @@ class contactHelper:
                 firstname = element.find_elements_by_tag_name("td")[2].text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
                 all_phones = element.find_elements_by_tag_name("td")[5].text.splitlines()
+                address = element.find_elements_by_tag_name("td")[3].text
+                email = element.find_elements_by_tag_name("td")[4].text
                 self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id,
-                                                  home=all_phones[0], mobile=all_phones[1],
-                                                  work=all_phones[2]))
+                                                  home=all_phones[0], mobile=all_phones[1], work=all_phones[2],
+                                                  address=address, email=email))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -179,8 +181,12 @@ class contactHelper:
         home = wd.find_element_by_name("home").get_attribute("value")
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
         work = wd.find_element_by_name("work").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
+        email = wd.find_element_by_name("email").get_attribute("value")
         #fax = wd.find_element_by_name("fax").get_attribute("value")
-        return Contact(firstname=firstname, lastname=lastname, id=id, home=home, mobile=mobile, work=work)
+        return Contact(firstname=firstname, lastname=lastname, id=id,
+                       home=home, mobile=mobile, work=work,
+                       address=address, email=email)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -189,6 +195,7 @@ class contactHelper:
         home = re.search("H: (.*)", text).group(1)
         mobile = re.search("M: (.*)", text).group(1)
         work = re.search("W: (.*)", text).group(1)
+
         return Contact(home=home, mobile=mobile, work=work)
 
 

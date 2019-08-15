@@ -4,10 +4,11 @@ from random import randrange
 
 def test_del_first_contact(app):
     if app.contact.count_contact() == 0:
-        app.contact.add_new_contact(Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Rog",
-                                            company="OOO", address="Moscow",
-                                            home="84951112233", mobile="79260001111", work="333333333", email="123@mail.ru",
-                                            bday="1", bmonth="January", byear="1990"))
+        app.contact.add_new_contact(Contact(firstname="YYYYYYY", middlename="ДДДДДД", lastname="YYYYYY", nickname="Rog",
+                      company="OOO", address="Moscow",
+                      home="+84951112233", mobile="", work="3(333)33333",
+                      email="123@mail.ru", email3="5555@mail.ru", email2="",
+                      bday="1", bmonth="January", byear="1990"))
     old_contacts = app.contact.get_contact_list()
     app.contact.del_first_contact()
     new_contacts = app.contact.get_contact_list()
@@ -17,10 +18,11 @@ def test_del_first_contact(app):
 
 def test_del_contact_by_index(app):
     if app.contact.count_contact() == 0:
-        app.contact.add_new_contact(Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Rog",
-                                            company="OOO", address="Moscow",
-                                            home="84951112233", mobile="79260001111", work="333333333", email="123@mail.ru",
-                                            bday="1", bmonth="January", byear="1990"))
+        app.contact.add_new_contact(Contact(firstname="YYYYYYY", middlename="ДДДДДД", lastname="YYYYYY", nickname="Rog",
+                      company="OOO", address="Moscow",
+                      home="+84951112233", mobile="", work="3(333)33333",
+                      email="123@mail.ru", email3="5555@mail.ru", email2="",
+                      bday="1", bmonth="January", byear="1990"))
     old_contacts = app.contact.get_contact_list()
     # выбираем случайный индекс
     index = randrange(len(old_contacts))

@@ -9,7 +9,7 @@ class Group:
 
     #как выглядит строковое представление Объекта выведенного в консоли
     def __repr__(self):
-        return "%s:%s" % (self.id, self.name)
+        return "%s:%s;%s;%s" % (self.id, self.name, self.header, self.footer)
 
     #сравнение объектов по смыслу (поэлементное сравнение двух списков)
     def __eq__(self, other):

@@ -1,8 +1,31 @@
 # -*- coding: utf-8 -*-
 from model.group import Group
+import pytest
+#для случайного выбора
+import random
+#содержит константы хранящие списков символов
+import string
+
+#генерация случайных тестовых данных
+def random_string(prefix, maxlen):
+    #символы которые будем использовать в случайно сгенерированной строке
+    symbols = string.ascii_letters + string.digits + string.punctuation + " "*10
+    #random.choice - выбирает symbols из заданной строки
+    #будет сгенерирована случайная длина НЕ превышающая max
+    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
-def test_add_group(app):
+#выносим тестовые данные из функции
+testdata = [
+        Group(name=name, header=header, footer=footer)
+        for name in ["", random_string("name", 10)]
+        for header in ["", random_string("header", 20)]
+        for footer in ["", random_string("footer", 20)]
+]
+
+#добавили передачу тестовых данных в качестве параметра, где group- параметр, testdata - источник, ids - параметр с текстовым представлением
+@pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])
+def test_add_group(app, group):
     old_groups = app.group.get_group_list()
     group = Group(name="group_name", header="header", footer="footer")
     app.group.create(group)

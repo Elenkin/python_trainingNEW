@@ -9,8 +9,8 @@ class Application:
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
-            #self.wd = webdriver.Chrome('C:\\Users\\e.pavlova\\Desktop\\tmp\\chromedriver_win32\\chromedriver.exe')
-            self.wd = webdriver.Chrome()
+            self.wd = webdriver.Chrome('C:\\Users\\e.pavlova\\Desktop\\tmp\\chromedriver_win32\\chromedriver.exe')
+            #self.wd = webdriver.Chrome()
         elif browser == "ie":
             self.wd == webdriver.Ie()
         else:
@@ -29,9 +29,9 @@ class Application:
     def is_valid(self):
         try:
             self.wd.current_url
-            return  True
+            return True
         except:
-            return  False
+            return False
 
     def destroy(self):
         self.wd.quit()

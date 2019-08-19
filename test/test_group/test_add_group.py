@@ -17,17 +17,15 @@ def random_string(prefix, maxlen):
 
 #выносим тестовые данные из функции
 testdata = [
-        Group(name=name, header=header, footer=footer)
-        for name in ["", random_string("name", 10)]
-        for header in ["", random_string("header", 20)]
-        for footer in ["", random_string("footer", 20)]
+        Group(name=random_string("name", 10), header=random_string("header", 20), footer=random_string("footer", 20))
+        #for i in range(5)
 ]
 
 #добавили передачу тестовых данных в качестве параметра, где group- параметр, testdata - источник, ids - параметр с текстовым представлением
 @pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])
 def test_add_group(app, group):
     old_groups = app.group.get_group_list()
-    group = Group(name="group_name", header="header", footer="footer")
+    #group = Group(name="group_name", header="header", footer="footer")
     app.group.create(group)
     #сравнимаем не со значением длины нового списка а со значениеv rjnjhsq djpdhfoftn метод count
     assert len(old_groups) + 1 == app.group.count_group()

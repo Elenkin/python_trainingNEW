@@ -27,5 +27,5 @@ testdata = [
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/contact_with_jsonpickle.json")
 
 with open(file, "w") as f:
-    frozen = jsonpickle.encode(testdata)
-    f.write(frozen)
+    jsonpickle.set_encoder_options("json", indent=2)
+    f.write(jsonpickle.encode(testdata))

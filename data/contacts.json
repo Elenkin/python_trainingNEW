@@ -1,0 +1,23 @@
+[
+  {
+    "py/object": "model.contact.Contact",
+    "address": "addressYTOZ",
+    "all_email_from_home_page": null,
+    "all_phones_from_home_page": null,
+    "bday": "1",
+    "bmonth": "January",
+    "byear": "1990",
+    "company": "companyc",
+    "email": "test@mail.ru",
+    "email2": "",
+    "email3": "5555@mail.ru",
+    "firstname": "FirstGutsl",
+    "home": "8",
+    "id": null,
+    "lastname": "last",
+    "middlename": "MiddlWNpGVRep",
+    "mobile": "+725(",
+    "nickname": "Nickv-",
+    "work": "75)8 01777"
+  }
+]

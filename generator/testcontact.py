@@ -24,7 +24,7 @@ testdata = [
             bday="1", bmonth="January", byear="1990")
 ]
 
-file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/contact_with_jsonpickle.json")
+file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/contacts.json")
 
 with open(file, "w") as f:
     jsonpickle.set_encoder_options("json", indent=2)

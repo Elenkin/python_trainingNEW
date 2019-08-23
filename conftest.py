@@ -13,8 +13,8 @@ def load_config(file):
     global target
     if target is None:
         config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), file)
-        with open(config_file) as f:
-            target = json.load(f)
+        with open(config_file) as file:
+            target = json.load(file)
     return target
 
 @pytest.fixture

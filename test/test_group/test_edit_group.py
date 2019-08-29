@@ -16,21 +16,6 @@ def test_edit_group(app):
     old_groups[index] = group
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
-def test_edit_group_check_db(app, db, check_ui):
-    if len(db.get_group_list()) == 0:
-        app.group.create(Group(name="test", header="header", footer="footer"))
-    old_groups = db.get_group_list()
-    #выбираем случайный индекс
-    index = randrange(len(old_groups))
-    group = Group(name="NEW_group", header="header", footer="footer")
-    #запомнили id группы
-    group.id = old_groups[index].id
-    app.group.modify_group_by_index(index, group)
-    new_groups = db.get_group_list()
-    assert len(old_groups) == len(new_groups)
-    if check_ui:
-         assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
-
 def test_edit_first_group(app):
    if app.group.count_group() == 0:
       app.group.create(Group(name="test", header="header", footer="footer"))

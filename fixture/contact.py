@@ -1,5 +1,6 @@
 from selenium.webdriver.support.ui import Select
 from model.contact import Contact
+from model.group import Group
 import re
 
 class contactHelper:
@@ -35,6 +36,11 @@ class contactHelper:
     def select_contact_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[id='%s']" % id).click()
+
+    def select_group_from_dropdown(self, group_id):
+        wd = self.app.wd
+        select = Select(wd.find_element_by_css_selector("[name='group']"))
+        select.select_by_value("%s" % group_id)
 
     def del_all_contact(self):
         wd = self.app.wd
@@ -211,8 +217,52 @@ class contactHelper:
         home = re.search("H: (.*)", text).group(1)
         mobile = re.search("M: (.*)", text).group(1)
         work = re.search("W: (.*)", text).group(1)
-
         return Contact(home=home, mobile=mobile, work=work)
+
+    def add_contact_in_group(self, contact_id, group_name):
+        wd = self.app.wd
+        self.select_contact_by_id(contact_id)
+        group_list = wd.find_element_by_name("to_group")
+        select = Select(group_list)
+        select.select_by_visible_text(group_name)
+        wd.find_element_by_name("add").click()
+        self.app.open_home_page()
+        self.contact_cache = None
+
+    def del_contact_from_group(self, contact_id, group):
+        wd = self.app.wd
+        group_list = wd.find_element_by_name("group")
+        select = Select(group_list)
+        select.select_by_visible_text(group)
+        self.select_contact_by_id(contact_id)
+        wd.implicitly_wait(10)
+        wd.find_element_by_name("remove").click()
+        self.app.open_home_page()
+        self.contact_cache = None
+
+    def get_contacts_in_group(self, group):
+        wd = self.app.wd
+        contacts_list = []
+        group_list = wd.find_element_by_name("group")
+        select = Select(group_list)
+        select.select_by_visible_text(group)
+        for row in wd.find_elements_by_name("entry"):
+            cells = row.find_elements_by_tag_name("td")
+            id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+            contacts_list.append(Contact(id=id))
+        return list(contacts_list)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
